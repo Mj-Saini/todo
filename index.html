@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    ul div {
+      text-align: left;
+    }
+    .remove {
+      color: blanchedalmond;
+      background-color: rgb(255, 0, 128);
+      padding: 5px 10px;
+      transform: translateY(-67px);
+      display: inline-block;
+      margin-right: 10px;
+      cursor: pointer;
+      width: 45px;
+      text-align: center;
+    }
+    ul div:nth-child(odd) {
+      background: #000000;
+      color: #ffffff;
+      padding: 8px 20px;
+      display: flex;
+      border-radius: 5px;
+      justify-content: ;
+      width: 100%;
+    }
+    ul div p {
+      background: #0b2ad7;
+      color: #ffffff;
+      padding: 12px 20px;
+      display: flex;
+      border-radius: 5px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    input {
+      border: 2px solid #114bf8;
+      border-radius: 5px 0 0 5px;
+      max-width: 500px;
+      display: flex;
+      justify-content: center;
+      padding: 12px 12px;
+      font-size: large;
+      outline: none;
+    }
+    button {
+      padding: 12px 25px;
+      border: 2px solid #114bf8;
+      display: inline-block;
+      background-color: rgb(3, 245, 253);
+      border-radius: 0 5px 5px 0;
+      margin-left: -2px;
+      cursor: pointer;
+    }
+    .d_flex {
+      display: flex;
+    }
+    .c {
+      justify-content: space-around;
+    }
+
+    .full_page {
+      max-width: 1440px;
+      padding: 12px;
+      margin: 0 auto;
+      background-color: rgb(34, 51, 61);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+    }
+
+    .pt_5 {
+      padding: 48px 0 0 0;
+    }
+    ul.list {
+      width: 75%;
+      margin: 45px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: red;
+      padding: 20px;
+    }
+    .jcc {
+      justify-content: center;
+    }
+    .w_100 {
+      width: 100%;
+    }
+    .fill-border {
+      border: 1px solid #f81111;
+    }
+    .fillborder {
+      border: 1px solid #11f824;
+      color: #11f824;
+    }
+    @media (max-width: 576px) {
+      .flex_col {
+        flex-direction: column;
+      }
+      .gap-2 {
+        gap: 8px;
+      }
+    }
+  </style>
+  <body bgcolor="#fafafa " style="padding: 0">
+    <section style="min-height: 100vh">
+      <div style="padding: 12px" class="full_page">
+        <div class="d_flex jcc w_100">
+          <div class="d_flex pt_5 jcc flex_col w_100 gap-2">
+            <input type="text" id="input" />
+            <input type="text" id="input1" />
+            <button type="button" id="BTN" onclick="addlist()">Add</button>
+          </div>
+        </div>
+        <ul
+          style="
+            padding: 0;
+            width: 75%;
+            margin: 30px auto 0 auto;
+            text-align: end;
+            flex-wrap: wrap;
+          "
+          id="lis"
+        ></ul>
+      </div>
+    </section>
+    <script>
+      const addlist = () => {
+        const input = document.getElementById("input");
+        const input1 = document.getElementById("input1");
+        const lis = document.getElementById("lis");
+        if (input.value.trim() !== "") {
+          let text = input.value;
+          let text2 = input1.value;
+          console.log(text);
+          let newdiv = document.createElement("div");
+          newdiv.className = "printarea";
+          newdiv.innerHTML = `<div style="width:100vw;gap:20px" class="d_flex justyfi_around"><p style="width:33%;">${text}</p> <p style="width:33%;"">${text2}</p>  <ul
+          style="padding: 0; width: 75%; margin: 0 auto; text-align: end"
+          id="lis"
+        ></ul></div>`;
+          lis.appendChild(newdiv);
+
+          // input.value = "";
+
+          //add remove btn
+          let removebtn = document.createElement("span");
+          removebtn.className = "remove";
+          removebtn.id = "remove";
+          removebtn.innerText = "remove";
+
+          removebtn.addEventListener("click", function () {
+            lis.removeChild(newdiv);
+            lis.removeChild(removebtn);
+            lis.removeChild(editbtn);
+            lis.removeChild(savebtn);
+          });
+
+          // edit btn
+          let editbtn = document.createElement("span");
+          editbtn.className = "remove";
+          editbtn.innerText = "edit";
+          editbtn.addEventListener("click", function () {
+            newdiv.contentEditable = "true";
+          });
+          let savebtn = document.createElement("span");
+          savebtn.className = "remove";
+          savebtn.innerText = "save";
+          savebtn.addEventListener("click", function () {
+            newdiv.contentEditable = "false";
+          });
+          lis.appendChild(editbtn);
+          lis.appendChild(savebtn);
+          lis.appendChild(removebtn);
+
+          let inpu = document.getElementById("input").classList;
+          let inpu1 = document.getElementById("input1").classList;
+          let BTN = document.getElementById("BTN").classList;
+          inpu.add("fillborder");
+          inpu1.add("fillborder");
+          btn.add("fillborder");
+        } else {
+          let inpu = document.getElementById("input").classList;
+          let inpu1 = document.getElementById("input1").classList;
+          let BTN = document.getElementById("BTN").classList;
+          inpu.add("fill-border");
+          inpu1.add("fill-border");
+          btn.add("fill-border");
+        }
+      };
+    </script>
+  </body>
+</html>
